@@ -1,21 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import theme from './src/theme/theme';
+
+/**
+ *
+ * Expo
+ */
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+
+/**
+ *
+ * Styled components
+ */
+import {
+   ThemeProvider
+} from 'styled-components';
+
+/**
+ *
+ * Screens
+ */
+import News from './src/screens/News';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+   const [ fontsLoaded, error ] = useFonts({
+      'Bozon-Bold': require('./assets/fonts/Bozon-Bold.ttf'),
+      'Bozon-Medium': require('./assets/fonts/Bozon-DemiBold.ttf'),
+      'Bozon-Regular': require('./assets/fonts/Bozon-Regular.ttf'),
+   });
+
+   if (!fontsLoaded) {
+      return <AppLoading/>
+   }
+
+   if (error) {
+      alert('Não foi possível carregar as fontes.');
+   }
+
+   return (
+      <ThemeProvider theme={theme}>
+         <News/>
+      </ThemeProvider>
+   );
+}
