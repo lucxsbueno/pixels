@@ -4,9 +4,10 @@ export default {
       secondary: '#00B4D8',
       terciary: '#073B4C',
       accent: 'rgba(150, 211, 242, 0.1)',
+      opaque: '#7F7F7F',
 
       background: '#FFFFFF',
-      border: '#B6B6B6',
+      border: '#EAEAEA',
       text: '#000000'
    },
    fonts: {
